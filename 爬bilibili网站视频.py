@@ -3,6 +3,8 @@ import json
 import pprint
 import re
 import os
+import subprocess
+import sys
 
 """获取url响应体"""
 def getResponse(url):
@@ -49,10 +51,21 @@ def saveMedia(fileName, content, mediaType):
 
 def AvMerge(Mp3Name, Mp4Name, savePath):
     print("开始合并音频和视频.........")
-    os.system(f'ffmpeg -i "{Mp4Name}" -i "{Mp3Name}" -c:v copy -c:a aac -strict experimental "{savePath}"')
+    print(f"音频文件: {Mp3Name}")
+    print(f"视频文件: {Mp4Name}")
+    print(f"合并后文件保存路径: {savePath}")
+
+    # 使用subprocess来调用ffmpeg，并重定向输出
+    with open(os.devnull, 'w') as devnull:
+        result = subprocess.run(
+            ['ffmpeg', '-i', Mp4Name, '-i', Mp3Name, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', savePath],
+            stdout=devnull,
+            stderr=devnull
+        )
+
+    print("合并成功！")
     os.remove(Mp3Name)
     os.remove(Mp4Name)
-    print("合并成功！")
 
 def main():
     url = input("请输入B站视频url地址:")
