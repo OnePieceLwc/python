@@ -7,7 +7,7 @@ from pyquery import PyQuery as pq
 page_num = 1
 
 account = str(input('print csdn id:'))
-#account = "ygdxt"
+#account = "lwcwam"
 # 首页地址
 baseUrl = 'http://blog.csdn.net/' + account
 # 连接页号，组成爬取的页面网址
