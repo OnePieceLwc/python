@@ -20,4 +20,4 @@ jobs:
         run: pip install requests
 
       - name: Run Python script
-        run: python juejin.py
+        run: python 掘金自动签到脚本.py
