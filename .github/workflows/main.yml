@@ -1,0 +1,23 @@
+name: juejin automatic check-in script
+
+on:
+  schedule:
+    - cron: '* * * * *' # 每分钟触发一次
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Python script
+        run: python juejin.py
