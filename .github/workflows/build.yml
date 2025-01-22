@@ -1,3 +1,45 @@
+# name: Node.js CI
+
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 6 * * 1'
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+        
+#       - name: Clone repository
+#         run: git clone https://github.com/berstend/puppeteer-extra.git puppeteer-extra --depth=1
+        
+#       - name: 'Fix for: error fsevents@2.1.2: The platform "linux" is incompatible with this module.'
+#         run: cd puppeteer-extra && npx json -I -f package.json -e 'this.resolutions={}'
+
+#       - name: Build packages
+#         run: |
+#           cd puppeteer-extra
+#           yarn install
+#           yarn bootstrap
+#           yarn build
+          
+#       - name: Extract stealth.min.js
+#         run: |
+#           cd puppeteer-extra/packages/extract-stealth-evasions
+#           node index.js
+#           cp stealth.min.js ../../../
+      
+#       - name: Commit stealth.min.js
+#         uses: EndBug/add-and-commit@v4
+#         with:
+#           add: 'stealth.min.js'
+#           force: true
+#           ref: 'main'
+#           message: 'Auto-updated stealth.min.js with newest evasions'
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 name: Node.js CI
 
 on:
@@ -8,13 +50,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
+      - name: Remove existing directory
+        run: rm -rf puppeteer-extra
+
       - name: Clone repository
-        run: git clone https://github.com/berstend/puppeteer-extra.git puppeteer-extra --depth=1
-        
+        run: git clone git@github.com:berstend/puppeteer-extra.git puppeteer-extra --depth=1
+
       - name: 'Fix for: error fsevents@2.1.2: The platform "linux" is incompatible with this module.'
         run: cd puppeteer-extra && npx json -I -f package.json -e 'this.resolutions={}'
 
@@ -24,13 +70,13 @@ jobs:
           yarn install
           yarn bootstrap
           yarn build
-          
+
       - name: Extract stealth.min.js
         run: |
           cd puppeteer-extra/packages/extract-stealth-evasions
           node index.js
           cp stealth.min.js ../../../
-      
+
       - name: Commit stealth.min.js
         uses: EndBug/add-and-commit@v4
         with:
