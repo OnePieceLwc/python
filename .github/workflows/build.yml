@@ -58,6 +58,13 @@ jobs:
       - name: Remove existing directory
         run: rm -rf puppeteer-extra
 
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Clone repository
         run: git clone git@github.com:berstend/puppeteer-extra.git puppeteer-extra --depth=1
 
