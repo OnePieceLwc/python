@@ -1,0 +1,32 @@
+name: CSDN1
+
+on:
+  workflow_dispatch:
+  schedule:
+    # - cron: '* * * * *' # 每分钟触发一次
+    - cron: '0 0,3,6,9,12,15,18,21 * * *' # 每3小时触发一次
+    
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Python script
+        run: python CSDN刷浏览量1.py
+
+      - name: Upload log file
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: log # 上传log文件夹
