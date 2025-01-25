@@ -24,3 +24,9 @@ jobs:
 
       - name: Run Python script
         run: python CSDN刷浏览量.py
+
+      - name: Upload log file
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: log # 上传log文件夹
