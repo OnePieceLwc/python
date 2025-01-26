@@ -1,0 +1,5 @@
+"csdnRRS":
+  url : 'https://blog.csdn.net/lwcwam/rss/list?spm=1001.2014.3001.5502'
+
+proxy_api:
+  url: 'https://api.lumiproxy.com/web_v1/free-proxy/list?page_size=100&page=1&language=zh-hans'
