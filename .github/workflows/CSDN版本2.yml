@@ -20,7 +20,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install yaml
 
       - name: Run Python script
         run: python CSDN刷浏览量版本2.py
