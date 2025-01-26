@@ -24,6 +24,10 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests
+     
+      - name: Install dependencies
+        run: pip install loguru
+        
         
       - name: Run Python script
         run: python CSDN刷浏览量版本2.py
