@@ -1,0 +1,50 @@
+
+# # 服务器端代码
+from cryptography.fernet import Fernet
+
+#  生成密钥
+key = Fernet.generate_key()
+f = Fernet(key)
+
+def generate_license_key(expiry_date_str):
+    license_data = expiry_date_str
+    encrypted_license_key = f.encrypt(license_data.encode())
+    return encrypted_license_key.decode()
+
+expiry_date_str = input("请输入过期日期 (YYYY-MM-DD): ")
+license_key = generate_license_key(expiry_date_str)
+print(f"生成的授权码: {license_key}")
+print(f"生成的密钥: {key.decode()}")
+
+# 客户端代码
+import datetime
+from cryptography.fernet import Fernet
+
+user_input = input("请输入一个密钥: ")
+
+# 将字符串转换为字节串
+key = user_input.encode('utf-8')
+
+f = Fernet(key)
+
+def verify_license_key(encrypted_license_key):
+    try:
+        decrypted_data = f.decrypt(encrypted_license_key.encode()).decode()
+        expiry_date = datetime.datetime.strptime(decrypted_data, '%Y-%m-%d').date()
+        today = datetime.date.today()
+        # return today <= expiry_date
+        if today <= expiry_date:
+            return True
+        else:
+            print(f"授权码已过期, 请联系管理员:")
+            return False
+    except Exception as e:
+        return False
+
+license_key = input("请输入授权码: ")
+is_valid = verify_license_key(license_key)
+
+if is_valid:
+    print("授权码有效")
+else:
+    print("授权码无效, 请联系管理员:")
