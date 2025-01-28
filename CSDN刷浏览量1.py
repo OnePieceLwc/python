@@ -59,7 +59,7 @@ def brash(proxy_dict):
 
 
 if __name__ == '__main__':
-    final = 10000
+    final = 2000
     count = 1
     for _ in range(final):
         proxies = [{'http': 'https://api.lumiproxy.com/web_v1/free-proxy/list?page_size=1000&page=1&language=zh-hans'}]
