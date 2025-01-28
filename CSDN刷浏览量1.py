@@ -62,7 +62,7 @@ if __name__ == '__main__':
     final = 10000
     count = 1
     for _ in range(final):
-        proxies = [{'http': 'https://api.lumiproxy.com/web_v1/free-proxy/list?page_size=60&page=1&language=zh-hans'}]
+        proxies = [{'http': 'https://api.lumiproxy.com/web_v1/free-proxy/list?page_size=1000&page=1&language=zh-hans'}]
         for _ in range(count):
             pool = multiprocessing.Pool(processes=32)
             results = [pool.apply_async(brash, (proxy,)) for proxy in proxies if proxy]
