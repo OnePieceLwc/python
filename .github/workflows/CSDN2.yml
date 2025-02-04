@@ -27,7 +27,7 @@ jobs:
         run: python CSDN刷浏览量2.py
 
       - name: Upload log file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: logs
           path: log # 上传log文件夹
