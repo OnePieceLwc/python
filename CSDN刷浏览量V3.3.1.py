@@ -1,7 +1,7 @@
-import requests   进口的要求
-import multiprocessing   导入多进程模块
-import time   导入的时间
-import random   进口随机
+import requests
+import multiprocessing
+import time
+import random
 from urls import URL_LIST
 
 success_num = 0
@@ -32,7 +32,7 @@ def brash(proxy_dict, url_index):
     header = {'User-Agent': UserAgent}
     url = URL_LIST[url_index]
 
-    try:   试一试:
+    try:
         r = requests.get( url, headers=header, proxies=proxy_dict, timeout=10)
         r.raise_for_status()
         print(url)
