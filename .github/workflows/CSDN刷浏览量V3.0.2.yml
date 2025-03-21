@@ -1,4 +1,4 @@
-name: CSDN刷浏览量V3.0.1
+name: CSDN刷浏览量V3.0.2
 
 on:
   workflow_dispatch:
