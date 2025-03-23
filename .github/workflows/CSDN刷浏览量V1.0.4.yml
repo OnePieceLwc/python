@@ -1,4 +1,4 @@
-name: CSDN4
+name: CSDN刷浏览量V1.0.4
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
         run: pip install requests
 
       - name: Run Python script
-        run: python CSDN刷浏览量4.py
+        run: python CSDN刷浏览量V1.0.4.py
 
       - name: Upload log file
         uses: actions/upload-artifact@v4
