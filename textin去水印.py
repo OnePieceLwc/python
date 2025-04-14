@@ -11,6 +11,7 @@ class CommonOcr(object):
     def __init__(self, img_path=None, is_url=False, output_folder="output_images"):
 
         self._url = 'https://api.textin.com/ai/service/v1/image/watermark_remove'
+        # https://www.textin.com/document/watermark-remove
         self._app_id = '15b34431cb4829e78489e0d132102a40'  # 替换为你的x-ti-app-id
         self._secret_code = '6a3609d617ea3d1f924c002520e579ac'  # 替换为你的x-ti-secret-code
         self._img_path = img_path
