@@ -44,7 +44,7 @@ def brash(proxy_dict):
     header = {'User-Agent': UserAgent}
 
     try:
-        r = requests.get("https://lucianaib.blog.csdn.net/article/details/145125742", headers=header, proxies=proxy_dict, timeout=10)
+        r = requests.get("https://blog.csdn.net/lwcwam/article/details/147850109", headers=header, proxies=proxy_dict, timeout=10)
         r.raise_for_status()
         logging.info("Request successful") # 成功日志
         print("successful")
